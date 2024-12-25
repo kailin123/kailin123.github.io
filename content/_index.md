@@ -29,7 +29,7 @@ projectWidget:
   - title: Other Projects
     items:
       - title: Tableau Dashboards
-        imgUrl: /images/icon-tableau.png/ #/public/image/icon-tableau.png /static/images # path is relative to the static folder
+        imgUrl: /images/profile.jpeg #/images/icon-tableau.png/  # path is relative to the static folder
         description: Some visualisations I have created since my time as a university student
         link: https://public.tableau.com/app/profile/kailin/vizzes
 
