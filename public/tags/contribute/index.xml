@@ -1,19 +1,17 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Contribute on Jane - A super concise theme for Hugo</title>
+    <title>Contribute on Kailin</title>
     <link>http://localhost:1313/tags/contribute/</link>
-    <description>Recent content in Contribute on Jane - A super concise theme for Hugo</description>
+    <description>Recent content in Contribute on Kailin</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <managingEditor>me@example.com (Jane)</managingEditor>
-    <webMaster>me@example.com (Jane)</webMaster>
-    <lastBuildDate>Mon, 23 Dec 2024 23:43:00 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 24 Dec 2024 20:00:20 +0800</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/contribute/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>How to Contribute</title>
       <link>http://localhost:1313/post/docs/how-to-contribute/</link>
-      <pubDate>Sat, 15 Oct 2022 00:00:00 +0000</pubDate><author>me@example.com (Jane)</author>
+      <pubDate>Sat, 15 Oct 2022 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/post/docs/how-to-contribute/</guid>
       <description>&lt;h2 id=&#34;contributing-to-jane&#34;&gt;Contributing to Jane&lt;/h2&gt;&#xA;&lt;p&gt;There are many ways to contribute to the Jane theme: submitting pull requests, reporting issues, providing new translations, and creating suggestions.&lt;/p&gt;&#xA;&lt;h2 id=&#34;build-and-run&#34;&gt;Build and Run&lt;/h2&gt;&#xA;&lt;p&gt;If you want to understand how Jane works, you&amp;rsquo;ll want to get the source, build it, and run locally.&lt;/p&gt;&#xA;&lt;h3 id=&#34;getting-the-sources&#34;&gt;Getting the sources&lt;/h3&gt;&#xA;&lt;div class=&#34;highlight-container&#34;&gt;&#xA;&#xA;  &lt;button class=&#34;copy-code-btn outline&#34;&gt;Copy&lt;/button&gt;&#xA;&#xA;  &#xA;  &lt;div class=&#34;highlight&#34;&gt;&lt;div style=&#34;background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&#xA;&lt;table style=&#34;border-spacing:0;padding:0;margin:0;border:0;&#34;&gt;&lt;tr&gt;&lt;td style=&#34;vertical-align:top;padding:0;margin:0;border:0;&#34;&gt;&#xA;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f&#34; id=&#34;hl-0-1&#34;&gt;&lt;a style=&#34;outline:none;text-decoration:none;color:inherit&#34; href=&#34;#hl-0-1&#34;&gt;1&lt;/a&gt;&#xA;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&#xA;&lt;td style=&#34;vertical-align:top;padding:0;margin:0;border:0;;width:100%&#34;&gt;&#xA;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;git clone https://github.com/xianmin/hugo-theme-jane.git&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&#xA;&lt;/div&gt;&#xA;&lt;/div&gt;&#xA;&lt;/div&gt;&#xA;&lt;h3 id=&#34;prerequisites&#34;&gt;Prerequisites&lt;/h3&gt;&#xA;&lt;p&gt;You need install the &lt;code&gt;Hugo_extended&lt;/code&gt; version to use &lt;a href=&#34;https://gohugo.io/hugo-pipes/&#34;&gt;Hugo Pipes&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;p&gt;We recommend that you use VSCode. And if you edit &lt;code&gt;.html&lt;/code&gt; files, recommend you install prettier and &lt;a href=&#34;https://github.com/NiklasPor/prettier-plugin-go-template&#34;&gt;prettier-plugin-go-template&lt;/a&gt; &lt;strong&gt;globally&lt;/strong&gt; . And open &lt;code&gt;Prettier: Resolve Global Modules&lt;/code&gt; in your VSCode Settings.&lt;/p&gt;</description>
     </item>

@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/WebPage" data-theme="light">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>
+    
+    Visualising Market Cap - Kailin
+    </title>
+  
+
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes" />
+
+
+<meta name="MobileOptimized" content="width" />
+<meta name="HandheldFriendly" content="true" />
+
+
+<meta name="applicable-device" content="pc,mobile">
+<meta name="color-scheme" content="light dark" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+<meta name="mobile-web-app-capable" content="yes">
+
+
+<meta name="generator" content="Hugo 0.140.0" />
+
+
+<link rel="canonical" href="http://localhost:1313/post/1-marketcap_visualisation/" />
+
+
+
+
+<meta name="author" content="Kailin" />
+<meta name="description" content="In May 2024, DBS became the first Singapore-listed company to achieve SGD 100 billion in market capitalisation. While market cap is just one of many factors to consider when evaluating a company&rsquo;s performance, I was curious to explore how the market capitalisations of Singapore&rsquo;s local banks have evolved over the years.
+I used R and the fmpcloudr package to retrieve market cap data and plotted them over time
+End Result " />
+
+
+
+
+
+  
+
+
+
+
+<meta name="keywords" content="Hugo, theme, jane" />
+
+
+<meta property="og:url" content="http://localhost:1313/post/1-marketcap_visualisation/">
+  <meta property="og:site_name" content="Kailin">
+  <meta property="og:title" content="Visualising Market Cap">
+  <meta property="og:description" content="In May 2024, DBS became the first Singapore-listed company to achieve SGD 100 billion in market capitalisation. While market cap is just one of many factors to consider when evaluating a company’s performance, I was curious to explore how the market capitalisations of Singapore’s local banks have evolved over the years.
+I used R and the fmpcloudr package to retrieve market cap data and plotted them over time
+End Result">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2024-12-15T16:01:23+08:00">
+    <meta property="article:modified_time" content="2024-12-15T16:01:23+08:00">
+
+  <meta itemprop="name" content="Visualising Market Cap">
+  <meta itemprop="description" content="In May 2024, DBS became the first Singapore-listed company to achieve SGD 100 billion in market capitalisation. While market cap is just one of many factors to consider when evaluating a company’s performance, I was curious to explore how the market capitalisations of Singapore’s local banks have evolved over the years.
+I used R and the fmpcloudr package to retrieve market cap data and plotted them over time
+End Result">
+  <meta itemprop="datePublished" content="2024-12-15T16:01:23+08:00">
+  <meta itemprop="dateModified" content="2024-12-15T16:01:23+08:00">
+  <meta itemprop="wordCount" content="358">
+  <meta itemprop="keywords" content="Visualisation,R">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Visualising Market Cap">
+  <meta name="twitter:description" content="In May 2024, DBS became the first Singapore-listed company to achieve SGD 100 billion in market capitalisation. While market cap is just one of many factors to consider when evaluating a company’s performance, I was curious to explore how the market capitalisations of Singapore’s local banks have evolved over the years.
+I used R and the fmpcloudr package to retrieve market cap data and plotted them over time
+End Result">
+
+<link rel="icon" href="/favicon.ico" />
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/style.min.c9964d43db1dc220348d0c55de4dcf29ff6c7fc52921c06289cab388ba2d2ba3.css" integrity="sha256-yZZNQ9sdwiA0jQxV3k3PKf9sf8UpIcBiicqziLotK6M=" media="screen"
+  crossorigin="anonymous">
+
+
+
+
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+
+
+
+
+<script>
+  (function () {
+    var savedTheme = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+  })();
+</script>
+
+
+</head>
+
+<body>
+  <div id="back-to-top"></div>
+
+  <header class="site-header">
+    
+<div class="desktop-header">
+  <div class="desktop-header-logo">
+    <a href="/" class="logo">
+      
+       
+      
+    </a>
+  </div>
+
+  <nav class="desktop-navbar">
+    <ul id="menu" class="menu">
+      
+      
+      <li class="menu-item">
+        
+        
+        
+        <a class="menu-item-link" href="http://localhost:1313/">Home</a>
+        
+
+        
+
+      </li>
+      
+      <li class="menu-item">
+        
+        
+        <a class="menu-item-link menu-parent" href="http://localhost:1313/post/">
+          Data Exploration
+          
+<svg aria-hidden="true" class="lucide lucide-chevron-down hi-svg-inline icon--chevron-down" fill="none" height="1em" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="m6 9 6 6 6-6"/></svg>
+        </a>
+        <ul class="submenu">
+          
+          <li class="submenu-item">
+            <a href="http://localhost:1313/post/1-marketcap_visualisation/">Visualising Market Cap</a>
+          </li>
+          
+        </ul>
+
+        
+
+      </li>
+      
+
+      
+      
+
+      
+
+      <li class="menu-item">
+        <a class="theme-toggle menu-item-link" href="javascript:void(0);">
+
+          
+<svg aria-hidden="true" class="lucide lucide-sun hi-svg-inline theme-icon-light" fill="none" height="1em" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+
+          
+<svg aria-hidden="true" class="lucide lucide-moon hi-svg-inline theme-icon-dark" fill="none" height="1em" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+
+        </a>
+      </li>
+
+      
+    </ul>
+  </nav>
+</div>
+
+    
+
+<div class="mobile-header">
+  <div id="mobile-navbar" class="mobile-navbar">
+    <div id="mobile-navbar-icon" class="mobile-navbar-icon">
+      
+<svg aria-hidden="true" class="lucide lucide-menu hi-svg-inline icon--menu" fill="none" height="1em" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+    </div>
+    <div class="mobile-navbar-logo">
+      <a href="/" class="logo"> </a>
+    </div>
+  </div>
+
+  <div id="mobile-menu-close-modal" class="mobile-menu-close-modal"></div>
+  <nav id="mobile-menu" class="mobile-menu">
+    <ul class="mobile-menu-list">
+      <li class="mobile-menu-item">
+        
+        
+        
+        <a class="menu-item-link" href="http://localhost:1313/">Home</a>
+        
+        
+      </li><li class="mobile-menu-item">
+        
+        
+        <div class="mobile-menu-parent">
+          <span class="mobile-submenu-open"></span>
+          <a href="http://localhost:1313/post/">
+            Data Exploration
+          </a>
+        </div>
+        <ul class="mobile-submenu-list">
+          
+          <li>
+            <a href="http://localhost:1313/post/1-marketcap_visualisation/">Visualising Market Cap</a>
+          </li>
+          
+        </ul>
+        
+      </li>
+      
+
+      
+
+      <li class="mobile-menu-item">
+        <a class="theme-toggle menu-item-link" href="javascript:void(0);">
+
+          
+<svg aria-hidden="true" class="lucide lucide-sun hi-svg-inline theme-icon-light" fill="none" height="1em" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+
+          
+<svg aria-hidden="true" class="lucide lucide-moon hi-svg-inline theme-icon-dark" fill="none" height="1em" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+
+        </a>
+      </li>
+
+      
+    </ul>
+  </nav>
+</div>
+
+  </header>
+
+  
+
+  
+
+
+
+  <main id="main" class="main pico container">
+    <div class="content-wrapper">
+  <aside class="sidebar">
+  </aside>
+  <div id="content" class="content">
+    <article class="post">
+      
+      <header class="post-header">
+        <h1 class="post-title">Visualising Market Cap</h1>
+        
+
+
+
+        <div class="post-meta-list">
+  <div class="post-meta-item post-meta-author">
+    
+<svg aria-hidden="true" class="lucide lucide-user-round-pen hi-svg-inline" fill="none" height="1em" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M2 21a8 8 0 0 1 10.821-7.487"/><path d="M21.378 16.626a1 1 0 0 0-3.004-3.004l-4.01 4.012a2 2 0 0 0-.506.854l-.837 2.87a.5.5 0 0 0 .62.62l2.87-.837a2 2 0 0 0 .854-.506z"/><circle cx="10" cy="8" r="5"/></svg>
+    Kailin
+    
+  </div>
+
+  <div class="post-meta-item post-meta-time">
+    
+<svg aria-hidden="true" class="lucide lucide-calendar-days hi-svg-inline" fill="none" height="1em" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/><path d="M8 14h.01"/><path d="M12 14h.01"/><path d="M16 14h.01"/><path d="M8 18h.01"/><path d="M12 18h.01"/><path d="M16 18h.01"/></svg>
+    <time datetime=" 2024-12-15">
+      2024-12-15
+    </time>
+
+
+    
+
+  </div>
+
+
+  <div class="post-meta__right">
+    <span class="post-meta-more">
+      358 words -
+      2 min read
+      </span>
+
+    <div class="post-meta-item post-meta-category">
+      
+        
+          
+        <a href="http://localhost:1313/categories/visualisation/">visualisation</a>
+        
+          
+        <a href="http://localhost:1313/categories/r/">r</a>
+    </div>
+
+
+    
+    
+
+
+    
+    
+  </div>
+</div>
+
+      </header>
+
+      
+      <div class="post-content">
+        <p>In May 2024, DBS became the first Singapore-listed company to achieve SGD 100 billion in market capitalisation. While market cap is just one of many factors to consider when evaluating a company&rsquo;s performance, I was curious to explore how the market capitalisations of Singapore&rsquo;s local banks have evolved over the years.</p>
+<p>I used R and the fmpcloudr package to retrieve market cap data and plotted them over time</p>
+<h3 id="end-result">End Result</h3>
+<p> 
+<img src="/images/post1-marketcap.png" alt="This is an image in static/image folder."></p>
+<p> 
+ </p>
+<h3 id="load-in-required-libraries-and-set-token-for-fmpcloudr">Load in required libraries and set token for fmpcloudr</h3>
+<div class="highlight-container">
+
+  <button class="copy-code-btn outline">Copy</button>
+
+  
+  <div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-1">1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-2">2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-3">3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-4">4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-5">5</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-6">6</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-0-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-0-7">7</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#06287e">library</span>(tidyverse)
+</span></span><span style="display:flex;"><span><span style="color:#06287e">library</span>(lubridate)
+</span></span><span style="display:flex;"><span><span style="color:#06287e">library</span>(fmpcloudr)
+</span></span><span style="display:flex;"><span><span style="color:#06287e">library</span>(ggtext)
+</span></span><span style="display:flex;"><span><span style="color:#06287e">library</span>(scales)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#06287e">fmpc_set_token</span>(<span style="color:#4070a0">&#39;&lt;insert token here&gt;&#39;</span>) <span style="color:#60a0b0;font-style:italic"># get token from: https://site.financialmodelingprep.com/developer/docs</span></span></span></code></pre></td></tr></table>
+</div>
+</div>
+</div>
+<h3 id="prepare-data-set-for-plotting">Prepare data set for plotting</h3>
+<div class="highlight-container">
+
+  <button class="copy-code-btn outline">Copy</button>
+
+  
+  <div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-1">1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-2">2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-3">3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-4">4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-5">5</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-1-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-1-6">6</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>symbols <span style="color:#666">=</span> <span style="color:#06287e">c</span>(<span style="color:#4070a0">&#39;D05.SI&#39;</span>, <span style="color:#4070a0">&#39;U11.SI&#39;</span>, <span style="color:#4070a0">&#39;O39.SI&#39;</span>)
+</span></span><span style="display:flex;"><span>data <span style="color:#666">=</span> <span style="color:#06287e">fmpc_security_mrktcap</span>(symbols, limit <span style="color:#666">=</span> <span style="color:#40a070">30</span><span style="color:#666">*</span><span style="color:#40a070">12</span><span style="color:#666">*</span><span style="color:#40a070">12</span>)
+</span></span><span style="display:flex;"><span>data <span style="color:#666">=</span> data <span style="color:#666">%&gt;%</span> <span style="color:#06287e">mutate</span>(date <span style="color:#666">=</span> <span style="color:#06287e">ymd</span>(date)) <span style="color:#666">%&gt;%</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#06287e">mutate</span>(name <span style="color:#666">=</span> <span style="color:#06287e">case_when</span>(symbol <span style="color:#666">==</span> <span style="color:#4070a0">&#39;D05.SI&#39;</span> <span style="color:#666">~</span> <span style="color:#4070a0">&#34;DBS&#34;</span>,
+</span></span><span style="display:flex;"><span>                          symbol <span style="color:#666">==</span> <span style="color:#4070a0">&#39;U11.SI&#39;</span> <span style="color:#666">~</span> <span style="color:#4070a0">&#34;UOB&#34;</span>,
+</span></span><span style="display:flex;"><span>                          symbol <span style="color:#666">==</span> <span style="color:#4070a0">&#39;O39.SI&#39;</span> <span style="color:#666">~</span> <span style="color:#4070a0">&#34;OCBC&#34;</span>))</span></span></code></pre></td></tr></table>
+</div>
+</div>
+</div>
+<h3 id="plot-chart">Plot chart</h3>
+<div class="highlight-container">
+
+  <button class="copy-code-btn outline">Copy</button>
+
+  
+  <div class="highlight"><div style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-1"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-1"> 1</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-2"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-2"> 2</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-3"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-3"> 3</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-4"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-4"> 4</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-5"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-5"> 5</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-6"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-6"> 6</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-7"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-7"> 7</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-8"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-8"> 8</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-9"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-9"> 9</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-10"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-10">10</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-11"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-11">11</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-12"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-12">12</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-13"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-13">13</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-14"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-14">14</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-15"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-15">15</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-16"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-16">16</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-17"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-17">17</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-18"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-18">18</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-19"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-19">19</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-20"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-20">20</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-21"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-21">21</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-22"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-22">22</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-23"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-23">23</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-24"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-24">24</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-25"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-25">25</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-26"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-26">26</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-27"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-27">27</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-28"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-28">28</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-29"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-29">29</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-30"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-30">30</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-31"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-31">31</a>
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f" id="hl-2-32"><a style="outline:none;text-decoration:none;color:inherit" href="#hl-2-32">32</a>
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#06287e">ggplot</span>(data, <span style="color:#06287e">aes</span>(date, marketCap, colour <span style="color:#666">=</span> symbol)) <span style="color:#666">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#06287e">geom_line</span>() <span style="color:#666">+</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#06287e">labs</span>(title<span style="color:#666">=</span><span style="color:#4070a0">&#34;&lt;b&gt;Market Cap Evolution - &lt;span style=&#39;color: #000000&#39;&gt;DBS&lt;/span&gt;, 
+</span></span></span><span style="display:flex;"><span><span style="color:#4070a0">  &lt;span style=&#39;color: #e11a27;&#39;&gt;OCBC&lt;/span&gt; and
+</span></span></span><span style="display:flex;"><span><span style="color:#4070a0"> &lt;span style=&#39;color: #002469;&#39;&gt;UOB&lt;/span&gt;&#34;</span>,
+</span></span><span style="display:flex;"><span>       subtitle <span style="color:#666">=</span> <span style="color:#4070a0">&#34;From November 2019 to Present&#34;</span>,
+</span></span><span style="display:flex;"><span>       caption <span style="color:#666">=</span> <span style="color:#4070a0">&#34;Data Source: site.financialmodelingprep.com (fmpcloudr package)&#34;</span>,
+</span></span><span style="display:flex;"><span>       x<span style="color:#666">=</span><span style="color:#4070a0">&#34; &#34;</span>, y <span style="color:#666">=</span> <span style="color:#4070a0">&#34;Market Cap&#34;</span>)<span style="color:#666">+</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#06287e">scale_color_manual</span>(values <span style="color:#666">=</span> <span style="color:#06287e">c</span>(<span style="color:#4070a0">&#34;#000000&#34;</span>, <span style="color:#4070a0">&#34;#e11a27&#34;</span>, <span style="color:#4070a0">&#34;#002469&#34;</span>)) <span style="color:#666">+</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#06287e">theme</span>(plot.subtitle<span style="color:#666">=</span><span style="color:#06287e">element_text</span>(size<span style="color:#666">=</span><span style="color:#40a070">18</span>, hjust<span style="color:#666">=</span><span style="color:#40a070">0.5</span>, face<span style="color:#666">=</span><span style="color:#4070a0">&#34;italic&#34;</span>, color<span style="color:#666">=</span><span style="color:#4070a0">&#34;black&#34;</span>)) <span style="color:#666">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#06287e">theme_bw</span>() <span style="color:#666">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#06287e">theme</span>(
+</span></span><span style="display:flex;"><span>    plot.title <span style="color:#666">=</span> <span style="color:#06287e">element_markdown</span>(lineheight <span style="color:#666">=</span> <span style="color:#40a070">1.1</span>),
+</span></span><span style="display:flex;"><span>    plot.subtitle <span style="color:#666">=</span> <span style="color:#06287e">element_markdown</span>(size <span style="color:#666">=</span> <span style="color:#40a070">10</span>),
+</span></span><span style="display:flex;"><span>    legend.position <span style="color:#666">=</span> <span style="color:#4070a0">&#34;none&#34;</span>,
+</span></span><span style="display:flex;"><span>    plot.caption <span style="color:#666">=</span> <span style="color:#06287e">element_markdown</span>(size <span style="color:#666">=</span> <span style="color:#40a070">10</span>)
+</span></span><span style="display:flex;"><span>  )<span style="color:#666">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#06287e">scale_y_continuous</span>(labels <span style="color:#666">=</span> scales<span style="color:#666">::</span><span style="color:#06287e">label_number</span>(scale_cut <span style="color:#666">=</span> <span style="color:#06287e">cut_short_scale</span>())) <span style="color:#666">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#06287e">scale_x_date</span>(date_breaks <span style="color:#666">=</span> <span style="color:#4070a0">&#34;6 month&#34;</span>, <span style="color:#60a0b0;font-style:italic"># Date labels for each month</span>
+</span></span><span style="display:flex;"><span>               date_labels <span style="color:#666">=</span> <span style="color:#4070a0">&#34;%b-%y&#34;</span> , expand <span style="color:#666">=</span> <span style="color:#06287e">c</span>(<span style="color:#40a070">0.1</span>,<span style="color:#40a070">0</span>))<span style="color:#666">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#06287e">geom_label</span>(data <span style="color:#666">=</span> data <span style="color:#666">%&gt;%</span> <span style="color:#06287e">filter</span>(date<span style="color:#666">==</span><span style="color:#06287e">max</span>(date)),
+</span></span><span style="display:flex;"><span>             <span style="color:#06287e">aes</span>(label <span style="color:#666">=</span> <span style="color:#06287e">paste0</span>(name,<span style="color:#4070a0">&#39; (&#39;</span>,symbols, <span style="color:#4070a0">&#39;) \n&#39;</span>, <span style="color:#06287e">paste</span>(<span style="color:#06287e">format</span>(<span style="color:#06287e">round</span>(marketCap<span style="color:#666">/</span><span style="color:#40a070">1e9</span>,<span style="color:#40a070">1</span>),trim <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">TRUE</span>), <span style="color:#4070a0">&#34;B&#34;</span>))),
+</span></span><span style="display:flex;"><span>             label.size <span style="color:#666">=</span> <span style="color:#40a070">0.2</span>, size<span style="color:#666">=</span><span style="color:#40a070">3</span>,
+</span></span><span style="display:flex;"><span>             label.padding <span style="color:#666">=</span> <span style="color:#06287e">unit</span>(<span style="color:#40a070">0.2</span>, <span style="color:#4070a0">&#34;lines&#34;</span>), fontface<span style="color:#666">=</span><span style="color:#4070a0">&#34;bold&#34;</span>,
+</span></span><span style="display:flex;"><span>             nudge_x<span style="color:#666">=</span><span style="color:#40a070">200</span>) <span style="color:#666">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#06287e">geom_label</span>(data <span style="color:#666">=</span> data <span style="color:#666">%&gt;%</span> <span style="color:#06287e">filter</span>(date <span style="color:#666">==</span> <span style="color:#4070a0">&#39;2019-12-02&#39;</span>),
+</span></span><span style="display:flex;"><span>             <span style="color:#06287e">aes</span>(label <span style="color:#666">=</span> <span style="color:#06287e">paste</span>(<span style="color:#06287e">format</span>(<span style="color:#06287e">round</span>(marketCap<span style="color:#666">/</span><span style="color:#40a070">1e9</span>,<span style="color:#40a070">1</span>),trim <span style="color:#666">=</span> <span style="color:#007020;font-weight:bold">TRUE</span>), <span style="color:#4070a0">&#34;B&#34;</span>)   ),
+</span></span><span style="display:flex;"><span>             label.size <span style="color:#666">=</span> <span style="color:#40a070">0.2</span>, size<span style="color:#666">=</span><span style="color:#40a070">3</span>,
+</span></span><span style="display:flex;"><span>             label.padding <span style="color:#666">=</span> <span style="color:#06287e">unit</span>(<span style="color:#40a070">0.2</span>, <span style="color:#4070a0">&#34;lines&#34;</span>), fontface<span style="color:#666">=</span><span style="color:#4070a0">&#34;bold&#34;</span>,
+</span></span><span style="display:flex;"><span>             nudge_x<span style="color:#666">=</span><span style="color:#40a070">-100</span>) <span style="color:#666">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#06287e">geom_hline</span>(yintercept<span style="color:#666">=</span><span style="color:#40a070">100</span><span style="color:#666">*</span><span style="color:#40a070">1e9</span>,linetype<span style="color:#666">=</span><span style="color:#4070a0">&#39;dashed&#39;</span> ,col <span style="color:#666">=</span><span style="color:#4070a0">&#39;blue&#39;</span>) <span style="color:#666">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#06287e">annotate</span>(<span style="color:#4070a0">&#34;text&#34;</span>, x <span style="color:#666">=</span> <span style="color:#06287e">min</span>(data<span style="color:#666">$</span>date), y <span style="color:#666">=</span> <span style="color:#40a070">100</span><span style="color:#666">*</span><span style="color:#40a070">1e9</span>, label <span style="color:#666">=</span> <span style="color:#4070a0">&#39;100 Billion mark&#39;</span>, vjust <span style="color:#666">=</span> <span style="color:#40a070">-0.5</span>, col <span style="color:#666">=</span> <span style="color:#4070a0">&#39;blue&#39;</span>, size <span style="color:#666">=</span> <span style="color:#40a070">4</span>)</span></span></code></pre></td></tr></table>
+</div>
+</div>
+</div>
+
+      </div>
+
+      
+      
+
+
+
+      
+      
+
+
+      <footer class="post-footer">
+        
+
+
+        
+        <nav class="post-nav">
+          
+          
+        </nav>
+      </footer>
+    </article>
+
+    
+    
+
+
+    
+    
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+  
+
+    
+
+  
+
+  
+
+
+  </div>
+
+  
+  <nav class="toc" id="toc">
+    <div class="toc-title">Table of Contents</div>
+    <div class="toc-content custom-scrollbar">
+      <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#end-result">End Result</a></li>
+        <li><a href="#load-in-required-libraries-and-set-token-for-fmpcloudr">Load in required libraries and set token for fmpcloudr</a></li>
+        <li><a href="#prepare-data-set-for-plotting">Prepare data set for plotting</a></li>
+        <li><a href="#plot-chart">Plot chart</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+  </nav>
+
+
+</div>
+  </main>
+
+  <footer id="footer" class="site-footer">
+    <div class="social-icon-links">
+  
+
+
+<a href="mailto:aukailin@gmail.com" rel="me noopener" class="social-icon-link" title="email" >
+  
+<svg aria-hidden="true" class="icon hi-svg-inline" fill="currentColor" height="1em" version="1.1" viewBox="0 0 1451 1024" width="1em" xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
+  <path d="M664.781909 681.472759 0 97.881301C0 3.997201 71.046997 0 71.046997 0L474.477909 0 961.649408 0 1361.641813 0C1361.641813 0 1432.688811 3.997201 1432.688811 97.881301L771.345323 681.472759C771.345323 681.472759 764.482731 685.154773 753.594283 688.65053L753.594283 688.664858C741.602731 693.493018 729.424896 695.068979 718.077952 694.839748 706.731093 695.068979 694.553173 693.493018 682.561621 688.664858L682.561621 688.65053C671.644501 685.140446 664.781909 681.472759 664.781909 681.472759L664.781909 681.472759ZM718.063616 811.603883C693.779541 811.016482 658.879232 802.205449 619.10784 767.734955 542.989056 701.759633 0 212.052267 0 212.052267L0 942.809523C0 942.809523 0 1024 83.726336 1024L682.532949 1024 753.579947 1024 1348.948139 1024C1432.688811 1024 1432.688811 942.809523 1432.688811 942.809523L1432.688811 212.052267C1432.688811 212.052267 893.138176 701.759633 817.019477 767.734955 777.248 802.205449 742.347691 811.03081 718.063616 811.603883L718.063616 811.603883Z"></path>
+</svg>
+
+</a>
+<a href="https://www.linkedin.com/in/aukailin/" rel="me noopener" class="social-icon-link" title="linkedin"  target="_blank" >
+  
+<svg aria-hidden="true" class="icon hi-svg-inline" fill="currentColor" height="1em" version="1.1" viewBox="0 0 1024 1024" width="1em" xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
+  <path d="M872.405333 872.618667h-151.637333v-237.610667c0-56.661333-1.152-129.578667-79.018667-129.578667-79.061333 0-91.136 61.653333-91.136 125.397334v241.792H398.976V384h145.664v66.602667h1.962667c20.352-38.4 69.845333-78.933333 143.786666-78.933334 153.642667 0 182.058667 101.12 182.058667 232.746667v268.202667zM227.712 317.141333a87.978667 87.978667 0 0 1-88.021333-88.106666 88.064 88.064 0 1 1 88.021333 88.106666z m76.032 555.477334H151.68V384h152.064v488.618667zM948.266667 0H75.562667C33.792 0 0 33.024 0 73.770667v876.458666C0 991.018667 33.792 1024 75.562667 1024h872.576C989.866667 1024 1024 991.018667 1024 950.229333V73.770667C1024 33.024 989.866667 0 948.138667 0h0.128z"></path>
+</svg>
+
+</a>
+
+
+
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - <a class="theme-link" href="https://github.com/xianmin/hugo-theme-jane">Jane</a>
+  </span>
+
+  <span class="copyright-year">
+    &copy;
+    2024
+    
+  </span>
+
+  
+  
+
+  
+</div>
+
+  </footer>
+
+  
+
+
+
+
+<script type="text/javascript" src="/js/main.4082631adeb4d75e016bb3ffa8481a49f0b95be07efb6456614d6427a9a0391a.js" integrity="sha256-QIJjGt60114Ba7P/qEgaSfC5W&#43;B&#43;&#43;2RWYU1kJ6mgORo=" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe.min.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe-ui-default.min.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>

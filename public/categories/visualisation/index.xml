@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Visualisation on Kailin</title>
+    <link>http://localhost:1313/categories/visualisation/</link>
+    <description>Recent content in Visualisation on Kailin</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 15 Dec 2024 16:01:23 +0800</lastBuildDate>
+    <atom:link href="http://localhost:1313/categories/visualisation/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Visualising Market Cap</title>
+      <link>http://localhost:1313/post/1-marketcap_visualisation/</link>
+      <pubDate>Sun, 15 Dec 2024 16:01:23 +0800</pubDate>
+      <guid>http://localhost:1313/post/1-marketcap_visualisation/</guid>
+      <description>&lt;p&gt;In May 2024, DBS became the first Singapore-listed company to achieve SGD 100 billion in market capitalisation. While market cap is just one of many factors to consider when evaluating a company&amp;rsquo;s performance, I was curious to explore how the market capitalisations of Singapore&amp;rsquo;s local banks have evolved over the years.&lt;/p&gt;&#xA;&lt;p&gt;I used R and the fmpcloudr package to retrieve market cap data and plotted them over time&lt;/p&gt;&#xA;&lt;h3 id=&#34;end-result&#34;&gt;End Result&lt;/h3&gt;&#xA;&lt;p&gt; &#xA;&lt;img src=&#34;http://localhost:1313/images/post1-marketcap.png&#34; alt=&#34;This is an image in static/image folder.&#34;&gt;&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

@@ -3,24 +3,22 @@ title: Custom home page
 layout: custom_home  # use custom home layout
 
 introductionWidget:
-  title: Hi, I'm Jane
+  title: Hi, I'm Kailin! ◡̈
   description: |
-    Full-stack developer passionate about creating elegant solutions to complex problems.
-
-    - 🚀 Working on web development
-    - 📝 Writing about tech
-    - 💡 Learning new things
-  avatar: /hugo-theme-jane/image/blank-profile.png
+    - Data/Business Analyst 
+    - This is where I explore some topics I am interested in outside of work 🤓 
+    - Such as ... this site where I use Github Pages and Hugo to build a personal site
+  avatar: /images/profile.jpeg #/images/blank-profile.png  # path is relative to the static folder
   showSocial: true
 
 postWidget:
   - type: recent
-    title: Recent Posts
+    title: Data Exploration
     count: 3
-  - type: category
-    title: Posts From Category Demo
-    category: demo
-    count: 3
+  # - type: category
+  #   title: Data Exploration
+  #   category: Data Exploration
+  #   count: 3
   # - type: category
   #   title: Documents
   #   category: docs
@@ -28,25 +26,25 @@ postWidget:
 
 
 projectWidget:
-  - title: Open Source Projects
+  - title: Other Projects
     items:
-      - title: Hugo Theme Jane
-        imgUrl: /hugo-theme-jane/image/example.jpg
-        description: A readable & concise theme for Hugo, color schemes to choose, easy to personalize. Working well since 2018.
-        link: https://github.com/xianmin/hugo-theme-jane
+      - title: Tableau Dashboards
+        imgUrl: /images/icon-tableau.png/ #/public/image/icon-tableau.png /static/images # path is relative to the static folder
+        description: Some visualisations I have created since my time as a university student
+        link: https://public.tableau.com/app/profile/kailin/vizzes
 
-  - title: Featured Projects
-    items:
-      - title: E-Commerce Platform
-        imgUrl: /hugo-theme-jane/image/example.jpg
-        description: A full-featured online store with real-time inventory management.
-        link: https://example.com
-      - title: Task Management App
-        imgUrl: /hugo-theme-jane/image/example.jpg
-        description: Collaborative task management with real-time updates.
-        link: https://example.com
-      - title: Another App
-        imgUrl: /hugo-theme-jane/image/example.jpg
-        description: Collaborative task management with real-time updates.
-        link: https://example.com
+  # - title: Featured Projects
+  #   items:
+  #     - title: E-Commerce Platform
+  #       imgUrl: /hugo-theme-jane/image/example.jpg
+  #       description: A full-featured online store with real-time inventory management.
+  #       link: https://example.com
+  #     - title: Task Management App
+  #       imgUrl: /hugo-theme-jane/image/example.jpg
+  #       description: Collaborative task management with real-time updates.
+  #       link: https://example.com
+  #     - title: Another App
+  #       imgUrl: /hugo-theme-jane/image/example.jpg
+  #       description: Collaborative task management with real-time updates.
+  #       link: https://example.com
 ---

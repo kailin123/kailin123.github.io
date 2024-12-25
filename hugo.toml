@@ -1,16 +1,16 @@
 baseURL = "https://kailin123.github.io/"
-title = "Kailin's portfolio"
+title = "Kailin"
 enableRobotsTXT = true
 enableEmoji = true
 theme = "jane"
 
-hasCJKLanguage = true     # has chinese/japanese/korean ? # 自动检测是否包含 中文\日文\韩文
+hasCJKLanguage = false     # has chinese/japanese/korean ? # 自动检测是否包含 中文\日文\韩文
 paginate = 3              # Number of articles displayed on the homepage # 首页每页显示的文章数
 rssLimit = 20             # Limit Entry Count to Rss file # 限制 Rss 文章输出数量
 disqusShortname = ""      # disqus_shortname
 googleAnalytics = ""      # UA-XXXXXXXX-X
 copyright = ""            # default: params.author.name ↓ # 默认为下面配置的params.author.name ↓
-enableGitInfo = true      # use git commit log to generate lastmod record # 可根据 Git 中的提交生成最近更新记录。
+enableGitInfo = false      # use git commit log to generate lastmod record # 可根据 Git 中的提交生成最近更新记录。
 # uglyURLs = true         # more info: https://gohugo.io/content-management/urls/#ugly-urls
 
 [pagination]
@@ -38,36 +38,36 @@ defaultContentLanguage = "en"           # Default language to use
   identifier = "home"
   pageref = "/"
 [[menu.main]]
-  name = "Archives"
+  name = "Data Exploration"
   weight = 20
   identifier = "archives"
   pageref = "/post/"
-[[menu.main]]
-  name = "Tags"
-  weight = 30
-  identifier = "tags"
-  pageref = "/tags/"
-[[menu.main]]
-  name = "external-link"
-  weight = 50
-  pageref = "https://gohugo.io"
+# [[menu.main]]
+#   name = "Tags"
+#   weight = 30
+#   identifier = "tags"
+#   pageref = "/tags/"
+# [[menu.main]]
+#  name = "external-link"
+#  weight = 50
+#  pageref = "https://gohugo.io"
 
 
 [params]
   debug = false             # If true, load `eruda.min.js`. See https://github.com/liriliri/eruda
-  since = "2017"            # Site creation time          # 站点建立时间
+  since = "2024"            # Site creation time          # 站点建立时间
   homeFullContent = false   # if false, show post summaries on home page. Otherwise show full content.
-  rssFullContent = true     # if false, Rss feed instead of the summary
+  rssFullContent = false     # if false, Rss feed instead of the summary
   mainSections = ["post"]
 
-  author.name = "Jane"      # essential                     # 必需
-  author.email = "me@example.com" # optional, for RSS             # 可选
-  author.url = "/about"        # optional                      # 可选
+  author.name = "Kailin"      # essential                     # 必需
+  #author.email = "aukailin@gmail.com" # optional, for RSS             # 可选
+  #author.url = "/about"        # optional                      # 可选
 
   # site info (optional)                                  # 站点信息（可选，不需要的可以直接注释掉）
-  logoTitle = "Jane"        # default: the title value    # 默认值: 上面设置的title值
+  logoTitle = " "        # default: the title value    # 默认值: 上面设置的title值
   keywords = ["Hugo", "theme","jane"]
-  description = "Hugo theme jane example site."
+  description = "Kailin's website"
 
   # paginate of archives, tags and categories             # 归档、标签、分类每页显示的文章数目，建议修改为一个较大的值
   archive-paginate = 3
@@ -83,13 +83,13 @@ defaultContentLanguage = "en"           # Default language to use
   moreMeta = true
 
   # show language chooser in menu
-  showMenuLanguageChooser = true
+  showMenuLanguageChooser = false
 
-  showAuthorInfo = true # show author info below the article
+  showAuthorInfo = false # show author info below the article
 
   # Optional custom wallpaper image URL. Can be a remote image or local /static/img/wallpaper.jpg (make sure it has a small filesize for quick site painting)
   # wallpaper = "/static/img/wallpaper.jpg"
-  wallpaper = "https://followingmyfeet.com/wp-content/uploads/2018/02/825_2229-HDR.jpg"
+  #wallpaper = "https://followingmyfeet.com/wp-content/uploads/2018/02/825_2229-HDR.jpg"
 
   # 一些全局开关，你也可以在每一篇内容的 front matter 中针对单篇内容关闭或开启某些功能，在 archetypes/default.md 查看更多信息。
   # Some global options, you can also close or open something in front matter for a single post, see more information from `archetypes/default.md`.
@@ -98,7 +98,7 @@ defaultContentLanguage = "en"           # Default language to use
   bootcdn = false           # In china. @Deprecated: use [params.publicCDN]             # 是否使用bootcdn(@Deprecated: 请使用[params.publicCDN])
   mathjax = false           # see https://www.mathjax.org/                              # 是否使用mathjax（数学公式）
   katex = false             # see https://github.com/KaTeX/KaTeX
-  contentCopyright = '<a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a>'
+  #contentCopyright = '<a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a>'
 
   changyanAppid = ""        # Changyan app id             # 畅言
   changyanAppkey = ""       # Changyan app key
@@ -117,11 +117,11 @@ defaultContentLanguage = "en"           # Default language to use
   # customFooter = "京ICP备10000000号-1"
 
   # Remark42 is self-hosted privacy-focused comment system, https://remark42.com
-  remark42Url = "https://remark42.example.com"
-  remark42SiteId = "remark"
+  #remark42Url = "https://remark42.example.com"
+  #remark42SiteId = "remark"
 
   [params.commentCount.remark42] # enable "comment count" feature for remark42, requires moreMeta param to be enabled as well
-    enable = true
+    enable = false
 
   [params.publicCDN]        # load these files from public cdn                          # 启用公共CDN，需自行定义
     enable = false
@@ -133,7 +133,7 @@ defaultContentLanguage = "en"           # Default language to use
     photoswipeSKIN = '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css" integrity="sha256-c0uckgykQ9v5k+IqViZOZKc47Jn7KQil4/MP3ySA3F8=" crossorigin="anonymous">'
 
   [params.giscus]         # giscus is a comment system based on GitHub Discussions. see https://giscus.app
-    enable = true
+    enable = false
     repo = "xianmin/comments-for-hugo-theme-jane"
     repoId = "MDEwOlJlcG9zaXRvcnkxNDAyNDYzNjc="
     category = "Announcements"
@@ -199,27 +199,27 @@ defaultContentLanguage = "en"           # Default language to use
     showCommitMessage = true
 
   [params.social]                                         # 社交链接
-    a-email = "mailto:your@email.com"
-    b-stack-overflow = "http://localhost:1313"
-    c-twitter = "http://localhost:1313"
-    d-facebook = "http://localhost:1313"
-    e-linkedin = "http://localhost:1313"
-    f-google = "http://localhost:1313"
-    g-github = "http://localhost:1313"
-    h-weibo = "http://localhost:1313"
-    i-zhihu = "http://localhost:1313"
-    j-douban = "http://localhost:1313"
-    k-pocket = "http://localhost:1313"
-    l-tumblr = "http://localhost:1313"
-    m-instagram = "http://localhost:1313"
-    n-gitlab = "http://localhost:1313"
-    o-goodreads = "http://localhost:1313"
-    p-coding = "http://localhost:1313"
-    q-bilibili = "http://localhost:1313"
-    r-codeforces = "http://localhost:1313"
-    s-mastodon = "http://localhost:1313"
-    t-youtube = "http://localhost:1313"
-    u-twitch = "http://localhost:1313"
+    a-email = "mailto:aukailin@gmail.com"
+    # b-stack-overflow = "http://localhost:1313" # not in use
+    # c-twitter = "http://localhost:1313" # not in use
+    #d-facebook = "http://localhost:1313" # not in use
+    e-linkedin = "https://www.linkedin.com/in/aukailin/"
+    #f-google = "http://localhost:1313" # not in use
+    #g-github = "http://localhost:1313" # not in use
+    #h-weibo = "http://localhost:1313" # not in use
+    #i-zhihu = "http://localhost:1313" # not in use
+    #j-douban = "http://localhost:1313" # not in use
+    #k-pocket = "http://localhost:1313" # not in use
+    #l-tumblr = "http://localhost:1313" # not in use
+    #m-instagram = "http://localhost:1313" # not in use
+    #n-gitlab = "http://localhost:1313" # not in use
+    #o-goodreads = "http://localhost:1313" # not in use
+    #p-coding = "http://localhost:1313" # not in use
+    #q-bilibili = "http://localhost:1313" # not in use
+    #r-codeforces = "http://localhost:1313" # not in use
+    #s-mastodon = "http://localhost:1313" # not in use
+    #t-youtube = "http://localhost:1313" # not in use
+    #u-twitch = "http://localhost:1313" # not in use
 
 # jsonfeed support
 # more information: https://github.com/xianmin/hugo-theme-jane/issues/23
