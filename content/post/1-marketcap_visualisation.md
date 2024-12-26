@@ -13,13 +13,15 @@ menu:
     weight: 1
 ---
 
-In May 2024, DBS became the first Singapore-listed company to achieve SGD 100 billion in market capitalisation. While market cap is just one of many factors to consider when evaluating a company's performance, I was curious to explore how the market capitalisations of Singapore's local banks have evolved over the years.
+In May 2024, DBS became the first Singapore-listed company to achieve SGD 100 billion in market capitalisation. While market cap is just one of many factors to consider when evaluating a company's performance, I was curious to see how the market cap of Singapore's local banks has changed over the years.
 
-I used R and the fmpcloudr package to retrieve market cap data and plotted them over time
 
-### End Result
-&nbsp;
-![This is an image in `static/image` folder.](/images/post1-marketcap.png)
+{{< blockquote >}}
+  I used R and the fmpcloudr package to retrieve market cap data, then created an interactive Plotly chart to make it easier to explore the numbers at specific points in time.
+{{< /blockquote >}}
+
+{{< include-html "static/images/Untitled.html">}}
+
 
 &nbsp;
 &nbsp;
@@ -32,6 +34,7 @@ library(lubridate)
 library(fmpcloudr)
 library(ggtext)
 library(scales)
+library(plotly)
 
 fmpc_set_token('<insert token here>') # get token from: https://site.financialmodelingprep.com/developer/docs
 ```
@@ -50,36 +53,23 @@ data = data %>% mutate(date = ymd(date)) %>%
 ### Plot chart
 
 ```r
-ggplot(data, aes(date, marketCap, colour = symbol)) +
+fig = ggplot(data, aes(date, marketCap, colour = name, group = 1, 
+                       text = paste0("Date: ", date, "<br>Stock: ", name, "<br>Market Cap: <b>", paste(format(round(marketCap/1e9,1),trim = TRUE), "B"),"</b>"))) +
   geom_line() + 
-  labs(title="<b>Market Cap Evolution - <span style='color: #000000'>DBS</span>, 
-  <span style='color: #e11a27;'>OCBC</span> and
- <span style='color: #002469;'>UOB</span>",
-       subtitle = "From November 2019 to Present",
-       caption = "Data Source: site.financialmodelingprep.com (fmpcloudr package)",
+  labs(title="<b>Market Cap Trend - <span style='color: #000000'>DBS</span>, <span style='color: #e11a27;'>OCBC</span> and <span style='color: #0060AE;'>UOB</span>",
        x=" ", y = "Market Cap")+ 
-  scale_color_manual(values = c("#000000", "#e11a27", "#002469")) + 
+  scale_color_manual(values = c("#000000", "#e11a27", "#0060AE")) + 
   theme(plot.subtitle=element_text(size=18, hjust=0.5, face="italic", color="black")) +
   theme_bw() +
   theme(
-    plot.title = element_markdown(lineheight = 1.1),
-    plot.subtitle = element_markdown(size = 10),
+    plot.title = element_markdown(size = 12),
     legend.position = "none",
-    plot.caption = element_markdown(size = 10)
   )+
   scale_y_continuous(labels = scales::label_number(scale_cut = cut_short_scale())) +
-  scale_x_date(date_breaks = "6 month", # Date labels for each month
-               date_labels = "%b-%y" , expand = c(0.1,0))+
-  geom_label(data = data %>% filter(date==max(date)),
-             aes(label = paste0(name,' (',symbols, ') \n', paste(format(round(marketCap/1e9,1),trim = TRUE), "B"))),
-             label.size = 0.2, size=3,
-             label.padding = unit(0.2, "lines"), fontface="bold",
-             nudge_x=200) +
-  geom_label(data = data %>% filter(date == '2019-12-02'),
-             aes(label = paste(format(round(marketCap/1e9,1),trim = TRUE), "B")   ),
-             label.size = 0.2, size=3,
-             label.padding = unit(0.2, "lines"), fontface="bold",
-             nudge_x=-100) +
-  geom_hline(yintercept=100*1e9,linetype='dashed' ,col ='blue') +
-  annotate("text", x = min(data$date), y = 100*1e9, label = '100 Billion mark', vjust = -0.5, col = 'blue', size = 4)
+  scale_x_date(date_breaks = "6 month", 
+               date_labels = "%b%y" , expand = c(0.1,0))+
+  geom_hline(yintercept=100*1e9,linetype='dashed' ,col ='grey') +
+  annotate("text", x = as.Date("2023-01-01"), y = 102*1e9 , label = '100 Billion', col = 'grey', size = 3)
+
+ggplotly(fig, width = 650, height = 500, tooltip = "text") %>% layout(hovermode = "x unified")
 ```
