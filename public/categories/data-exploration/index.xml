@@ -6,6 +6,14 @@
     <description>Recent content in Data Exploration on Kailin</description>
     <generator>Hugo</generator>
     <language>en</language>
+    <lastBuildDate>Thu, 26 Dec 2024 16:01:23 +0800</lastBuildDate>
     <atom:link href="http://localhost:1313/categories/data-exploration/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Visualising Market Cap</title>
+      <link>http://localhost:1313/post/1-marketcap_visualisation/</link>
+      <pubDate>Thu, 26 Dec 2024 16:01:23 +0800</pubDate>
+      <guid>http://localhost:1313/post/1-marketcap_visualisation/</guid>
+      <description>&lt;p&gt;In May 2024, DBS became the first Singapore-listed company to achieve SGD 100 billion in market capitalisation. While market cap is just one of many factors to consider when evaluating a company&amp;rsquo;s performance, I was curious to see how the market cap of Singapore&amp;rsquo;s local banks has changed over the years.&lt;/p&gt;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;  &#xA;&#xA;&#xA;&#xA;&#xA;&#xA;  &#xA;&#xA;&#xA;&lt;blockquote&gt;&#xA;  &lt;p&gt;&lt;p&gt;I used R and the fmpcloudr package to retrieve market cap data, then created an interactive Plotly chart to make it easier to explore the numbers at specific points in time.&lt;/p&gt;</description>
+    </item>
   </channel>
 </rss>

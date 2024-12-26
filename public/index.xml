@@ -6,7 +6,7 @@
     <description>Recent content in Custom home page on Kailin</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 15 Dec 2024 16:01:23 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 26 Dec 2024 16:01:23 +0800</lastBuildDate>
     
         <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title>Visualising Market Cap</title>
       <link>http://localhost:1313/post/1-marketcap_visualisation/</link>
-      <pubDate>Sun, 15 Dec 2024 16:01:23 +0800</pubDate>
+      <pubDate>Thu, 26 Dec 2024 16:01:23 +0800</pubDate>
       
       <guid>http://localhost:1313/post/1-marketcap_visualisation/</guid>
       
@@ -40,7 +40,7 @@
 
 
 &lt;blockquote&gt;
-  &lt;p&gt;I used R and the fmpcloudr package to retrieve market cap data, then created an interactive Plotly chart to make it easier to explore the numbers at specific points in time.&lt;/p&gt;</description>
+  &lt;p&gt;I used R and the fmpcloudr package to retrieve market cap data, then created an &lt;span style=&#34;color:blue;&#34;&gt;&lt;b&gt;interactive&lt;/b&gt;&lt;/span&gt; Plotly chart to make it easier to explore the numbers at specific points in time.&lt;/p&gt;</description>
       
     </item>
     

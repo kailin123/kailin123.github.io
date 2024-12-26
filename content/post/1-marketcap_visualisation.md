@@ -1,10 +1,8 @@
 ---
 title: "Visualising Market Cap"
-date: 2024-12-15T16:01:23+08:00
-lastmod: 2024-12-15T16:01:23+08:00
+date: 2024-12-26T16:01:23+08:00
+lastmod: 2024-12-26T16:01:23+08:00
 draft: false
-# tags: ["visualisation", "r"]
-# categories: ["Data Exploration"]
 categories: ["visualisation", "r"]
 
 menu:
@@ -17,9 +15,13 @@ In May 2024, DBS became the first Singapore-listed company to achieve SGD 100 bi
 
 
 {{< blockquote >}}
-  I used R and the fmpcloudr package to retrieve market cap data, then created an interactive Plotly chart to make it easier to explore the numbers at specific points in time.
+  I used R and the fmpcloudr package to retrieve market cap data, then created an <span style="color:blue;"><b>interactive</b></span> Plotly chart to make it easier to explore the numbers at specific points in time.
 {{< /blockquote >}}
 
+<i><b>The below chart is best viewed on desktop.</b></i>
+
+
+### Chart
 {{< include-html "static/images/Untitled.html">}}
 
 
