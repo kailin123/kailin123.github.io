@@ -20,9 +20,10 @@ Fortunately, there is an option to export out the data and I decided to try usin
 {{< /blockquote >}}
 
 ### Heatmap
-<i><b>The below chart is best viewed on desktop. </b></i> &nbsp;
+<b>The below chart is best viewed on desktop. </b>
+&nbsp;
 
-<span style="color:blue;"> Hover mouse on chart to see data for specific dates</span>
+<span style="color:blue;">Hover mouse on chart to see data for specific dates</span>
 
 {{< include-html "static/images/stepcount_visualisation.html">}}
 
@@ -100,7 +101,7 @@ df['type'] = df['type'].str.replace('HKCategoryTypeIdentifier', '')
 
 # filter out relevant data
 stepcount = df[(df['type'] == 'StepCount') & (df['sourceName'] == 'Kailin') & (df['startDate'] >= '2022-01-01')
-              & (df['endDate'] <= '2024-12-31')]
+              & (df['startDate'] <= '2025-01-01')]
 
 # final dataframe for use
 stepcount = stepcount.groupby([stepcount['startDate'].dt.date])['value'].sum().reset_index()
