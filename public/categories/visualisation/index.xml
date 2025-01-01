@@ -6,14 +6,21 @@
     <description>Recent content in Visualisation on Kailin</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 15 Dec 2024 16:01:23 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 01 Jan 2025 12:01:23 +0800</lastBuildDate>
     <atom:link href="http://localhost:1313/categories/visualisation/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Visualising Step Count</title>
+      <link>http://localhost:1313/post/2-stepcount_visualisation/</link>
+      <pubDate>Wed, 01 Jan 2025 12:01:23 +0800</pubDate>
+      <guid>http://localhost:1313/post/2-stepcount_visualisation/</guid>
+      <description>&lt;p&gt;I wanted to get a view of my daily step count data across years. Currently, the Apple Health app only offers aggregated views when looking across longer time periods.&lt;/p&gt;&#xA;&lt;p&gt;Fortunately, there is an option to export out the data and I decided to try using this to visualise what I wanted.&lt;/p&gt;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;  &#xA;&#xA;&#xA;&#xA;&#xA;&#xA;  &#xA;&#xA;&#xA;&lt;blockquote&gt;&#xA;  &lt;p&gt;I used Python to parse and read in the .xml file, then used the plotly-calplot package to generate an &lt;u&gt;interactive&lt;/u&gt; heatmap.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Visualising Market Cap</title>
       <link>http://localhost:1313/post/1-marketcap_visualisation/</link>
-      <pubDate>Sun, 15 Dec 2024 16:01:23 +0800</pubDate>
+      <pubDate>Thu, 26 Dec 2024 16:01:23 +0800</pubDate>
       <guid>http://localhost:1313/post/1-marketcap_visualisation/</guid>
-      <description>&lt;p&gt;In May 2024, DBS became the first Singapore-listed company to achieve SGD 100 billion in market capitalisation. While market cap is just one of many factors to consider when evaluating a company&amp;rsquo;s performance, I was curious to see how the market cap of Singapore&amp;rsquo;s local banks has changed over the years.&lt;/p&gt;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;  &#xA;&#xA;&#xA;&#xA;&#xA;&#xA;  &#xA;&#xA;&#xA;&lt;blockquote&gt;&#xA;  &lt;p&gt;I used R and the fmpcloudr package to retrieve market cap data, then created an interactive Plotly chart to make it easier to explore the numbers at specific points in time.&lt;/p&gt;</description>
+      <description>&lt;p&gt;In May 2024, DBS became the first Singapore-listed company to achieve SGD 100 billion in market capitalisation. While market cap is just one of many factors to consider when evaluating a company&amp;rsquo;s performance, I was curious to see how the market cap of Singapore&amp;rsquo;s local banks has changed over the years.&lt;/p&gt;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;  &#xA;&#xA;&#xA;&#xA;&#xA;&#xA;  &#xA;&#xA;&#xA;&lt;blockquote&gt;&#xA;  &lt;p&gt;I used R and the fmpcloudr package to retrieve market cap data, then created an &lt;u&gt;interactive&lt;/u&gt; Plotly chart to make it easier to explore the numbers at specific points in time.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

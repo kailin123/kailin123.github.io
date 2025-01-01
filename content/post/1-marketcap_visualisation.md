@@ -3,26 +3,27 @@ title: "Visualising Market Cap"
 date: 2024-12-26T16:01:23+08:00
 lastmod: 2024-12-26T16:01:23+08:00
 draft: false
-categories: ["visualisation", "r"]
+categories: ["visualisation", "r","plotly"]
 
 menu:
   main:
     parent: "archives"
-    weight: 1
+    weight: 2
 ---
 
 In May 2024, DBS became the first Singapore-listed company to achieve SGD 100 billion in market capitalisation. While market cap is just one of many factors to consider when evaluating a company's performance, I was curious to see how the market cap of Singapore's local banks has changed over the years.
 
 
 {{< blockquote >}}
-  I used R and the fmpcloudr package to retrieve market cap data, then created an <span style="color:blue;"><b>interactive</b></span> Plotly chart to make it easier to explore the numbers at specific points in time.
+  I used R and the fmpcloudr package to retrieve market cap data, then created a Plotly chart to make it easier to explore the numbers at specific points in time.
 {{< /blockquote >}}
 
 <i><b>The below chart is best viewed on desktop.</b></i>
 
 
 ### Chart
-{{< include-html "static/images/Untitled.html">}}
+<span style="color:blue;"><i>Hover mouse on chart to see data for specific dates</i></span>
+{{< include-html "static/images/marketcap_visualisation.html">}}
 
 
 &nbsp;
@@ -46,7 +47,7 @@ fmpc_set_token('<insert token here>') # get token from: https://site.financialmo
 ```r
 symbols = c('D05.SI', 'U11.SI', 'O39.SI')
 data = fmpc_security_mrktcap(symbols, limit = 30*12*12)
-data = data %>% mutate(date = ymd(date)) %>%
+data = data %>% mutate(date = as.Date(date, format ='%Y-%m-%d')) %>%
   mutate(name = case_when(symbol == 'D05.SI' ~ "DBS",
                           symbol == 'U11.SI' ~ "UOB",
                           symbol == 'O39.SI' ~ "OCBC"))
@@ -56,7 +57,7 @@ data = data %>% mutate(date = ymd(date)) %>%
 
 ```r
 fig = ggplot(data, aes(date, marketCap, colour = name, group = 1, 
-                       text = paste0("Date: ", date, "<br>Stock: ", name, "<br>Market Cap: <b>", paste(format(round(marketCap/1e9,1),trim = TRUE), "B"),"</b>"))) +
+                       text = paste0("Date: ", format(date, "%d %b %Y"), "<br>Stock: ", name, "<br>Market Cap: <b>", paste(format(round(marketCap/1e9,1),trim = TRUE), "B"),"</b>"))) +
   geom_line() + 
   labs(title="<b>Market Cap Trend - <span style='color: #000000'>DBS</span>, <span style='color: #e11a27;'>OCBC</span> and <span style='color: #0060AE;'>UOB</span>",
        x=" ", y = "Market Cap")+ 
