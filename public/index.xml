@@ -19,7 +19,7 @@
       <guid>http://localhost:1313/post/2-stepcount_visualisation/</guid>
       
         <description>&lt;p&gt;I wanted to get a view of my daily step count data across years. Currently, the Apple Health app only offers aggregated views when looking across longer time periods.&lt;/p&gt;
-&lt;p&gt;Fortunately, there is an option to export out the data and I decided to try using this to visualise what I wanted.&lt;/p&gt;
+&lt;p&gt;Fortunately, there is an option to export out the data.&lt;/p&gt;
 
 
 
@@ -41,7 +41,21 @@
 
 
 &lt;blockquote&gt;
-  &lt;p&gt;I used Python to parse and read in the .xml file, then used the plotly-calplot package to generate a heatmap.&lt;/p&gt;</description>
+  &lt;p&gt;I used Python to parse and read in the .xml file, then used plotly-calplot package to generate a heatmap.&lt;/p&gt;
+  &lt;footer&gt;
+    &lt;strong&gt;&lt;/strong&gt;
+    
+      
+        
+      
+    
+  &lt;/footer&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&#34;heatmap&#34;&gt;Heatmap&lt;/h3&gt;
+&lt;p&gt;&lt;b&gt;The below chart is best viewed on desktop. &lt;/b&gt;
+ &lt;/p&gt;
+&lt;p&gt;&lt;span style=&#34;color:blue;&#34;&gt;Hover mouse on chart to see data for specific dates&lt;/span&gt;&lt;/p&gt;</description>
       
     </item>
     

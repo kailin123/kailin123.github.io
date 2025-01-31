@@ -18,11 +18,10 @@ In May 2024, DBS became the first Singapore-listed company to achieve SGD 100 bi
   I used R and the fmpcloudr package to retrieve market cap data, then created a Plotly chart to make it easier to explore the numbers at specific points in time.
 {{< /blockquote >}}
 
-<i><b>The below chart is best viewed on desktop.</b></i>
-
-
 ### Chart
-<span style="color:blue;"><i>Hover mouse on chart to see data for specific dates</i></span>
+<b>The below chart is best viewed on desktop.</b>
+
+<span style="color:blue;">Hover mouse on chart to see data for specific dates</span>
 {{< include-html "static/images/marketcap_visualisation.html">}}
 
 

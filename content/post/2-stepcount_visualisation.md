@@ -13,10 +13,10 @@ menu:
 
 I wanted to get a view of my daily step count data across years. Currently, the Apple Health app only offers aggregated views when looking across longer time periods. 
 
-Fortunately, there is an option to export out the data and I decided to try using this to visualise what I wanted.
+Fortunately, there is an option to export out the data.
 
 {{< blockquote >}}
-  I used Python to parse and read in the .xml file, then used the plotly-calplot package to generate a heatmap.
+  I used Python to parse and read in the .xml file, then used plotly-calplot package to generate a heatmap.
 {{< /blockquote >}}
 
 ### Heatmap
@@ -31,7 +31,7 @@ Fortunately, there is an option to export out the data and I decided to try usin
 
 This enables me to easily see my step count for any specific date between 2022 - 2024. 
 
-<i>I find this interesting as the trends align closely with key moments and activities in my life:
+<i>The trends align closely with key moments and activities in my life:
 - Covid-19 and work from home practices led to a much lower step count in 2022
 - I now know that my peak daily step count occured when I climbed Hallasan on Jeju Island in Sept 2023
 - Other trends are mostly related to work from home schedules, hiking trips, travelling overseas... </i>
@@ -62,7 +62,7 @@ For a clearer measure of which year saw the most activity, I also calculated the
   </tbody>
 </table>
 
-So in 2024, my steps activity has dropped slightly. Perhaps I should try for a new peak in 2025 😊
+So it seems my steps activity has fallen slightly in 2024. Time to catch up in 2025?
 
 ### Codes
 
